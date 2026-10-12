@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ce faci în weekend în Satu Mare</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; color: #1e1019; }
+  h1 { font-size: 1.6rem; }
+  li { margin-bottom: 14px; list-style: none; }
+  ul { padding: 0; }
+  a { color: #70265c; font-weight: 600; }
+  small { color: #6b5f67; display: block; }
+</style>
+</head>
+<body>
+<h1>Ce faci în weekend în Satu Mare</h1>
+<ul id="lista"><li>Se încarcă...</li></ul>
+<p><small>Sursa: <a href="https://ilovesm.ro">ilovesm.ro</a> (CC BY 4.0)</small></p>
+
+<script>
+fetch('https://ilovesm.ro/api/events?date=weekend&per_page=20&lang=ro')
+  .then(r => r.json())
+  .then(res => {
+    const lista = document.getElementById('lista');
+    const evenimente = res.ok ? res.data.events : [];
+    if (!evenimente.length) {
+      lista.innerHTML = '<li>În weekendul ăsta nu e nimic în agendă. Vezi <a href="https://ilovesm.ro/evenimente">toate evenimentele</a>.</li>';
+      return;
+    }
+    lista.innerHTML = '';
+    for (const ev of evenimente) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = ev.url;
+      a.textContent = ev.title;
+      const info = document.createElement('small');
+      info.textContent = [ev.date_label, ev.venue_name, ev.is_free ? 'intrare liberă' : ''].filter(Boolean).join(' · ');
+      li.append(a, info);
+      lista.append(li);
+    }
+  })
+  .catch(() => {
+    document.getElementById('lista').innerHTML = '<li>Nu am putut încărca evenimentele. Încearcă din nou puțin mai târziu.</li>';
+  });
+</script>
+</body>
+</html>
