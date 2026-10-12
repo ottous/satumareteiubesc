@@ -94,11 +94,11 @@ Filtre: `org` (organizatorul), `cat` (categoria), `venue` (locul), `lang`. Calen
 Dacă organizezi evenimente în Satu Mare și vrei programul tău pe site-ul tău, fără să-l actualizezi de mână:
 
 ```html
-<div class="smev-widget" data-org="2" data-limit="5" data-theme="light" data-lang="ro"></div>
+<div class="smev-widget" data-org="2" data-limit="5" data-theme="light" data-lang="ro"><a href="https://ilovesm.ro/o/teatrul-de-nord/2">Programul complet pe ilovesm.ro</a></div>
 <script src="https://ilovesm.ro/assets/js/smev-widget.js" async></script>
 ```
 
-`data-org` e numărul organizatorului din adresa paginii lui de pe ilovesm.ro (de exemplu `/o/teatrul-de-nord/2`). Cu `data-org="all"` primești toate evenimentele din oraș. Mai poți pune `data-cat` (o categorie), `data-theme="dark"` și `data-lang="hu"` sau `"en"`. Datele vin din `GET /api/widget`.
+`data-org` e numărul organizatorului din adresa paginii lui de pe ilovesm.ro (de exemplu `/o/teatrul-de-nord/2`). Cu `data-org="all"` primești toate evenimentele din oraș. Mai poți pune `data-cat` (o categorie), `data-theme="dark"` și `data-lang="hu"` sau `"en"`. Datele vin din `GET /api/widget`. Legătura din interiorul blocului rămâne vizibilă dacă cineva are JavaScript oprit sau dacă lista nu se poate încărca.
 
 ## Exemple
 
